@@ -259,13 +259,13 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="fullName">Full Name <span class="required-indicator">*</span></label>
-                <input type="text" id="fullName" name="fullName" placeholder="e.g. Alex Morgan" required autocomplete="name" />
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Alex Morgan" required autocomplete="name" aria-describedby="fullNameError" />
                 <span class="field-error" id="fullNameError" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="emailAddress">Email Address <span class="required-indicator">*</span></label>
-                <input type="email" id="emailAddress" name="emailAddress" placeholder="e.g. alex@example.com" required autocomplete="email" />
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="e.g. alex@example.com" required autocomplete="email" aria-describedby="emailError" />
                 <span class="field-error" id="emailError" aria-live="polite"></span>
               </div>
             </div>
@@ -278,7 +278,7 @@
 
               <div class="form-group">
                 <label for="programSelect">Program of Interest <span class="required-indicator">*</span></label>
-                <select id="programSelect" name="programSelect" required>
+                <select id="programSelect" name="programSelect" required aria-describedby="programError">
                   <option value="" disabled selected>Select a program</option>
                   <option value="strength">Strength (Foundations & Lifting)</option>
                   <option value="cardio">Cardio (Interval Conditioning)</option>
@@ -291,7 +291,7 @@
 
             <div class="form-group">
               <label for="preferredTime">Preferred Time of Day <span class="required-indicator">*</span></label>
-              <select id="preferredTime" name="preferredTime" required>
+              <select id="preferredTime" name="preferredTime" required aria-describedby="timeError">
                 <option value="" disabled selected>Select preferred time</option>
                 <option value="morning">Morning (07:00 AM)</option>
                 <option value="midday">Midday (12:15 PM)</option>
@@ -313,11 +313,11 @@
 
           <!-- Frontend-only confirmation message banner -->
           <div class="form-feedback" id="formFeedback" role="status" aria-live="polite" style="display: none;">
-            <div class="feedback-icon">✓</div>
+            <div class="feedback-icon" aria-hidden="true">✓</div>
             <div class="feedback-body">
-              <h3 class="feedback-title">Trial Request Received!</h3>
+              <h3 class="feedback-title">Booking Request Received</h3>
               <p class="feedback-text" id="feedbackMessage">
-                Thank you! We've received your trial request. A representative will reach out to your email shortly with available slots.
+                Thanks! This is a demo form, so no data is sent or stored.
               </p>
             </div>
           </div>

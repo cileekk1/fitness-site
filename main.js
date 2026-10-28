@@ -73,24 +73,45 @@ function initContactForm() {
   const programError = document.getElementById('programError');
   const timeError = document.getElementById('timeError');
 
+  const requiredFields = [
+    { input: fullNameInput, errorEl: nameError },
+    { input: emailInput, errorEl: emailError },
+    { input: programInput, errorEl: programError },
+    { input: timeInput, errorEl: timeError }
+  ];
+
   function clearErrors() {
-    [nameError, emailError, programError, timeError].forEach(el => {
-      if (el) el.textContent = '';
-    });
-    [fullNameInput, emailInput, programInput, timeInput].forEach(el => {
-      if (el) el.classList.remove('has-error');
+    requiredFields.forEach(({ input, errorEl }) => {
+      if (errorEl) errorEl.textContent = '';
+      if (input) {
+        input.classList.remove('has-error');
+        input.removeAttribute('aria-invalid');
+      }
     });
   }
 
-  // Clear single field error on input
-  [fullNameInput, emailInput, programInput, timeInput].forEach(input => {
+  function clearFieldError(input, errorEl) {
     if (input) {
-      input.addEventListener('input', () => {
-        input.classList.remove('has-error');
-        const errEl = document.getElementById(`${input.id}Error`) || document.getElementById('programError') || document.getElementById('timeError');
-        if (errEl) errEl.textContent = '';
-      });
+      input.classList.remove('has-error');
+      input.removeAttribute('aria-invalid');
     }
+    if (errorEl) {
+      errorEl.textContent = '';
+    }
+  }
+
+  // Clear error as user types or selects, and dismiss previous success notification if typing again
+  requiredFields.forEach(({ input, errorEl }) => {
+    if (!input) return;
+    const events = ['input', 'change'];
+    events.forEach(eventName => {
+      input.addEventListener(eventName, () => {
+        clearFieldError(input, errorEl);
+        if (feedback && feedback.style.display !== 'none') {
+          feedback.style.display = 'none';
+        }
+      });
+    });
   });
 
   function isValidEmail(email) {
@@ -102,55 +123,82 @@ function initContactForm() {
     clearErrors();
 
     let hasError = false;
+    let firstInvalidInput = null;
 
-    // Validate Name
+    // 1. Validate Full Name
     const nameVal = fullNameInput.value.trim();
     if (!nameVal) {
       fullNameInput.classList.add('has-error');
-      nameError.textContent = 'Please enter your full name.';
+      fullNameInput.setAttribute('aria-invalid', 'true');
+      nameError.textContent = 'Please enter your full name so we know who to welcome.';
       hasError = true;
+      if (!firstInvalidInput) firstInvalidInput = fullNameInput;
     }
 
-    // Validate Email
+    // 2. Validate Email
     const emailVal = emailInput.value.trim();
     if (!emailVal) {
       emailInput.classList.add('has-error');
-      emailError.textContent = 'Please enter your email address.';
+      emailInput.setAttribute('aria-invalid', 'true');
+      emailError.textContent = 'Please enter your email address so we can confirm your class.';
       hasError = true;
+      if (!firstInvalidInput) firstInvalidInput = emailInput;
     } else if (!isValidEmail(emailVal)) {
       emailInput.classList.add('has-error');
-      emailError.textContent = 'Please enter a valid email address.';
+      emailInput.setAttribute('aria-invalid', 'true');
+      emailError.textContent = 'Please enter a valid email address (e.g. name@example.com).';
       hasError = true;
+      if (!firstInvalidInput) firstInvalidInput = emailInput;
     }
 
-    // Validate Program
+    // 3. Validate Program
     if (!programInput.value) {
       programInput.classList.add('has-error');
-      programError.textContent = 'Please select a program.';
+      programInput.setAttribute('aria-invalid', 'true');
+      programError.textContent = 'Please select which program you would like to try.';
       hasError = true;
+      if (!firstInvalidInput) firstInvalidInput = programInput;
     }
 
-    // Validate Time
+    // 4. Validate Time
     if (!timeInput.value) {
       timeInput.classList.add('has-error');
-      timeError.textContent = 'Please select a preferred time of day.';
+      timeInput.setAttribute('aria-invalid', 'true');
+      timeError.textContent = 'Please pick your preferred time of day.';
       hasError = true;
+      if (!firstInvalidInput) firstInvalidInput = timeInput;
     }
 
-    if (hasError) return;
+    // If invalid, focus the first error field
+    if (hasError) {
+      if (firstInvalidInput) {
+        firstInvalidInput.focus();
+      }
+      return;
+    }
 
-    // Frontend simulation of successful submission
+    // Valid submission: show clear success message inside the page
     const selectedProgramText = programInput.options[programInput.selectedIndex].text;
     const selectedTimeText = timeInput.options[timeInput.selectedIndex].text;
 
-    feedbackMessage.textContent = `Thank you, ${nameVal}! Your request for a free trial in "${selectedProgramText}" (${selectedTimeText}) has been recorded. Since PulseFit Studio is a student demonstration project, no real reservation has been made.`;
+    feedbackMessage.innerHTML = `
+      <strong>Thanks! This is a demo form, so no data is sent or stored.</strong><br/>
+      <span class="feedback-subtext">We received your demo request for <em>${escapeHtml(nameVal)}</em> in <strong>${escapeHtml(selectedProgramText)}</strong> (${escapeHtml(selectedTimeText)}).</span>
+    `;
     feedback.style.display = 'flex';
 
+    // Clear form fields afterwards
     form.reset();
 
-    // Smooth scroll to the feedback banner
+    // Smooth scroll to the success feedback banner
     feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
 }
 
 /**
