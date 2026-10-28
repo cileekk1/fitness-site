@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PulseFit Studio is a welcoming fitness studio designed for beginners and intermediate trainees aged 18–35. Explore our Strength, Cardio, and Yoga/Mobility programs and book your free trial class." />
+  <title>PulseFit Studio | Fitness Training for Beginners & Intermediates</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- Sticky Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="#home" class="brand-logo" aria-label="PulseFit Studio Home">
+        <span class="logo-mark">⚡</span>
+        <span class="logo-text">PulseFit<span class="logo-accent">Studio</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle navigation menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <nav class="nav-menu" id="primaryNav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#programs" class="nav-link">Programs</a></li>
+          <li><a href="#schedule" class="nav-link">Weekly Schedule</a></li>
+          <li><a href="#about" class="nav-link">About the Studio</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <p class="section-kicker">Fitness for Beginners & Intermediates (Ages 18–35)</p>
+          <h1 class="hero-title">Build a consistent routine you can actually sustain.</h1>
+          <p class="hero-description">
+            Starting out or restarting shouldn't feel overwhelming. PulseFit Studio provides structured, beginner-friendly coaching in strength, conditioning, and mobility to help you stay active for the long run.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Book a Free Trial Class</a>
+          </div>
+
+          <div class="hero-highlights">
+            <div class="highlight-item">
+              <span class="highlight-bullet">✓</span>
+              <span>Guidance on every movement</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-bullet">✓</span>
+              <span>Friendly, zero-intimidation atmosphere</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-bullet">✓</span>
+              <span>Scalable workouts for all fitness levels</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section programs-section" id="programs">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Our Focus Areas</p>
+          <h2 class="section-title">Training Programs</h2>
+          <p class="section-subtitle">
+            Three complementary disciplines built around safe mechanics, progressive improvement, and sustainable habits.
+          </p>
+        </div>
+
+        <div class="programs-grid">
+          <!-- Program 1: Strength -->
+          <article class="program-card">
+            <div class="program-badge">Foundations</div>
+            <h3 class="program-title">Strength</h3>
+            <p class="program-summary">
+              Learn correct lifting technique with dumbbells, barbells, and bodyweight exercises. Ideal for anyone wanting to build lean muscle and functional strength safely.
+            </p>
+            <ul class="program-points">
+              <li>Form-focused instruction before adding weight</li>
+              <li>Core lifts: squats, presses, hinges, and rows</li>
+              <li>Small groups so coaches can correct form</li>
+            </ul>
+          </article>
+
+          <!-- Program 2: Cardio -->
+          <article class="program-card">
+            <div class="program-badge">Endurance</div>
+            <h3 class="program-title">Cardio</h3>
+            <p class="program-summary">
+              High-energy interval conditioning sessions using rowers, stationary bikes, and bodyweight intervals to boost stamina, cardiovascular health, and daily energy.
+            </p>
+            <ul class="program-points">
+              <li>Self-paced intervals adaptable to your current stamina</li>
+              <li>Short work rounds paired with structured rest periods</li>
+              <li>Dynamic team workouts that keep momentum high</li>
+            </ul>
+          </article>
+
+          <!-- Program 3: Yoga / Mobility -->
+          <article class="program-card">
+            <div class="program-badge">Recovery</div>
+            <h3 class="program-title">Yoga / Mobility</h3>
+            <p class="program-summary">
+              Improve joint range of motion, relieve muscular tightness from desk work, and practice restorative flow routines that keep your body feeling resilient.
+            </p>
+            <ul class="program-points">
+              <li>Targeted mobility work for hips, shoulders, and spine</li>
+              <li>Guided breathwork and dynamic stretching sequences</li>
+              <li>Essential active recovery between lifting sessions</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weekly Schedule Section -->
+    <section class="section schedule-section" id="schedule">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Timetable</p>
+          <h2 class="section-title">Weekly Schedule</h2>
+          <p class="section-subtitle">
+            Classes run throughout the morning and evening to fit student and work schedules. All classes are 50 minutes long.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Monday</th>
+                <th scope="col">Tuesday</th>
+                <th scope="col">Wednesday</th>
+                <th scope="col">Thursday</th>
+                <th scope="col">Friday</th>
+                <th scope="col">Saturday</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="time-cell">07:00 AM</th>
+                <td><span class="class-pill pill-strength">Strength 101</span></td>
+                <td><span class="class-pill pill-cardio">Cardio Circuit</span></td>
+                <td><span class="class-pill pill-strength">Strength 101</span></td>
+                <td><span class="class-pill pill-cardio">Cardio Circuit</span></td>
+                <td><span class="class-pill pill-strength">Full Body</span></td>
+                <td><span class="class-pill pill-mobility">Mobility Flow</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="time-cell">12:15 PM</th>
+                <td><span class="class-pill pill-cardio">Lunch Express</span></td>
+                <td><span class="class-pill pill-mobility">Desk Reset</span></td>
+                <td><span class="class-pill pill-cardio">Lunch Express</span></td>
+                <td><span class="class-pill pill-mobility">Desk Reset</span></td>
+                <td><span class="class-pill pill-cardio">Lunch Express</span></td>
+                <td class="cell-empty">—</td>
+              </tr>
+              <tr>
+                <th scope="row" class="time-cell">05:30 PM</th>
+                <td><span class="class-pill pill-strength">Strength Found.</span></td>
+                <td><span class="class-pill pill-cardio">Interval Cardio</span></td>
+                <td><span class="class-pill pill-strength">Strength Found.</span></td>
+                <td><span class="class-pill pill-cardio">Interval Cardio</span></td>
+                <td><span class="class-pill pill-strength">Strength Found.</span></td>
+                <td><span class="class-pill pill-cardio">Weekend Burn</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="time-cell">06:45 PM</th>
+                <td><span class="class-pill pill-cardio">High Intensity</span></td>
+                <td><span class="class-pill pill-strength">Upper & Core</span></td>
+                <td><span class="class-pill pill-cardio">High Intensity</span></td>
+                <td><span class="class-pill pill-strength">Lower Body</span></td>
+                <td><span class="class-pill pill-mobility">Restorative Yoga</span></td>
+                <td class="cell-empty">—</td>
+              </tr>
+              <tr>
+                <th scope="row" class="time-cell">08:00 PM</th>
+                <td><span class="class-pill pill-mobility">Evening Yoga</span></td>
+                <td><span class="class-pill pill-mobility">Deep Mobility</span></td>
+                <td><span class="class-pill pill-mobility">Evening Yoga</span></td>
+                <td><span class="class-pill pill-mobility">Deep Mobility</span></td>
+                <td class="cell-empty">—</td>
+                <td class="cell-empty">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="schedule-note">
+          * New members are encouraged to arrive 10 minutes prior to their first class for an equipment walk-through.
+        </p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text-column">
+            <p class="section-kicker">Our Philosophy</p>
+            <h2 class="section-title">Fitness that fits real daily lives.</h2>
+            <p class="about-paragraph">
+              PulseFit Studio was created for young adults and working professionals who want to develop dependable exercise habits without the stress or intimidation often associated with traditional gyms.
+            </p>
+            <p class="about-paragraph">
+              Whether you are picking up a dumbbell for the very first time or returning after months away, our coaches focus on clear instruction, sustainable pacing, and encouragement. We believe progress comes from showing up consistently rather than burning out on day one.
+            </p>
+
+            <div class="about-pillars">
+              <div class="pillar-card">
+                <h3 class="pillar-title">Form Before Intensity</h3>
+                <p class="pillar-description">Every workout starts with mechanics and movement prep so you learn how to train safely and confidently.</p>
+              </div>
+              <div class="pillar-card">
+                <h3 class="pillar-title">Welcoming Community</h3>
+                <p class="pillar-description">A community where questions are encouraged, progress is shared, and everyone trains at their own pace.</p>
+              </div>
+              <div class="pillar-card">
+                <h3 class="pillar-title">Straightforward Structure</h3>
+                <p class="pillar-description">Three clear training pathways—Strength, Cardio, and Yoga/Mobility—that balance power, endurance, and recovery.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+      <div class="container contact-container">
+        <div class="section-heading">
+          <p class="section-kicker">Get Started</p>
+          <h2 class="section-title">Ready to take your first session?</h2>
+          <p class="section-subtitle">
+            Fill in the details below to request your complimentary first visit. Our team will get back to you with class availability.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <form id="trialBookingForm" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name <span class="required-indicator">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Alex Morgan" required autocomplete="name" />
+                <span class="field-error" id="fullNameError" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="emailAddress">Email Address <span class="required-indicator">*</span></label>
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="e.g. alex@example.com" required autocomplete="email" />
+                <span class="field-error" id="emailError" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number (Optional)</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g. (555) 012-3456" autocomplete="tel" />
+              </div>
+
+              <div class="form-group">
+                <label for="programSelect">Program of Interest <span class="required-indicator">*</span></label>
+                <select id="programSelect" name="programSelect" required>
+                  <option value="" disabled selected>Select a program</option>
+                  <option value="strength">Strength (Foundations & Lifting)</option>
+                  <option value="cardio">Cardio (Interval Conditioning)</option>
+                  <option value="yoga-mobility">Yoga / Mobility (Flexibility & Reset)</option>
+                  <option value="not-sure">Not sure yet (I'd like guidance)</option>
+                </select>
+                <span class="field-error" id="programError" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredTime">Preferred Time of Day <span class="required-indicator">*</span></label>
+              <select id="preferredTime" name="preferredTime" required>
+                <option value="" disabled selected>Select preferred time</option>
+                <option value="morning">Morning (07:00 AM)</option>
+                <option value="midday">Midday (12:15 PM)</option>
+                <option value="evening">Evening (05:30 PM or 06:45 PM)</option>
+                <option value="night">Night (08:00 PM)</option>
+              </select>
+              <span class="field-error" id="timeError" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Experience Level or Goals (Optional)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Tell us if you're a complete beginner, recovering from an injury, or have a specific goal."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-block">Book a Free Trial Class</button>
+            </div>
+          </form>
+
+          <!-- Frontend-only confirmation message banner -->
+          <div class="form-feedback" id="formFeedback" role="status" aria-live="polite" style="display: none;">
+            <div class="feedback-icon">✓</div>
+            <div class="feedback-body">
+              <h3 class="feedback-title">Trial Request Received!</h3>
+              <p class="feedback-text" id="feedbackMessage">
+                Thank you! We've received your trial request. A representative will reach out to your email shortly with available slots.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo">
+            <span class="logo-mark">⚡</span>
+            <span class="logo-text">PulseFit<span class="logo-accent">Studio</span></span>
+          </a>
+          <p class="footer-tagline">
+            Practical, beginner-friendly fitness training designed for young adults.
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <p class="footer-nav-title">Quick Links</p>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#schedule">Weekly Schedule</a></li>
+            <li><a href="#about">About the Studio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="academic-disclaimer">
+          <strong>Academic Notice:</strong> PulseFit Studio is a fictional fitness studio created solely for a university course assignment. No real commercial gym services, memberships, or classes are offered.
+        </p>
+        <p class="copyright-notice">
+          &copy; <span id="currentYear">2026</span> PulseFit Studio (Fictional Student Project).
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
