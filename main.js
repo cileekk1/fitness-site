@@ -1,4 +1,4 @@
-// PULSEFIT STUDIO - CLIENT INTERACTION LOGIC (VANILLA JS)
+// GLOWFIT - CLIENT INTERACTION LOGIC (VANILLA JS)
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();

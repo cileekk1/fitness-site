@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PulseFit Studio is a welcoming fitness studio designed for beginners and intermediate trainees aged 18–35. Explore our Strength, Cardio, and Yoga/Mobility programs and book your free trial class." />
-  <title>PulseFit Studio | Fitness Training for Beginners & Intermediates</title>
+  <meta name="description" content="GLOWFIT is an elegant, welcoming fitness studio designed for beginners and intermediate trainees aged 18–35. Explore our Strength, Cardio, and Yoga/Mobility programs and book your free trial class." />
+  <title>GLOWFIT | Fitness Training for Beginners & Intermediates</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +18,13 @@
   <!-- Sticky Navigation Header -->
   <header class="site-header" id="header">
     <div class="container header-container">
-      <a href="#home" class="brand-logo" aria-label="PulseFit Studio Home">
-        <span class="logo-mark">⚡</span>
-        <span class="logo-text">PulseFit<span class="logo-accent">Studio</span></span>
+      <a href="#home" class="brand-logo" aria-label="GLOWFIT Home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12h3.5l2.5-6 4 12 2.5-6h3.5"/>
+          </svg>
+        </span>
+        <span class="logo-text">GLOW<span class="logo-accent">FIT</span></span>
       </a>
 
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle navigation menu">
@@ -42,14 +46,19 @@
   </header>
 
   <main id="main-content">
-    <!-- Hero Section -->
+    <!-- Hero Section with gym-1.jpg blurred background -->
     <section class="hero-section" id="home">
+      <div class="section-backdrop" aria-hidden="true">
+        <img src="/gym-1.jpg" alt="" class="backdrop-img hero-backdrop-img" />
+        <div class="backdrop-overlay hero-backdrop-overlay"></div>
+      </div>
+
       <div class="container hero-container">
         <div class="hero-content">
           <p class="section-kicker">Fitness for Beginners & Intermediates (Ages 18–35)</p>
           <h1 class="hero-title">Build a consistent routine you can actually sustain.</h1>
           <p class="hero-description">
-            Starting out or restarting shouldn't feel overwhelming. PulseFit Studio provides structured, beginner-friendly coaching in strength, conditioning, and mobility to help you stay active for the long run.
+            Starting out or restarting shouldn't feel overwhelming. GLOWFIT provides structured, beginner-friendly coaching in strength, conditioning, and mobility to help you stay active for the long run.
           </p>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">Book a Free Trial Class</a>
@@ -73,9 +82,14 @@
       </div>
     </section>
 
-    <!-- Programs Section -->
+    <!-- Programs Section with gym-2.jpg blurred background -->
     <section class="section programs-section" id="programs">
-      <div class="container">
+      <div class="section-backdrop" aria-hidden="true">
+        <img src="/gym-2.jpg" alt="" loading="lazy" class="backdrop-img programs-backdrop-img" />
+        <div class="backdrop-overlay programs-backdrop-overlay"></div>
+      </div>
+
+      <div class="container relative-container">
         <div class="section-heading">
           <p class="section-kicker">Our Focus Areas</p>
           <h2 class="section-title">Training Programs</h2>
@@ -210,15 +224,20 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section with gym-3.jpg blurred background -->
     <section class="section about-section" id="about">
-      <div class="container">
+      <div class="section-backdrop" aria-hidden="true">
+        <img src="/gym-3.jpg" alt="" loading="lazy" class="backdrop-img about-backdrop-img" />
+        <div class="backdrop-overlay about-backdrop-overlay"></div>
+      </div>
+
+      <div class="container relative-container">
         <div class="about-grid">
           <div class="about-text-column">
             <p class="section-kicker">Our Philosophy</p>
             <h2 class="section-title">Fitness that fits real daily lives.</h2>
             <p class="about-paragraph">
-              PulseFit Studio was created for young adults and working professionals who want to develop dependable exercise habits without the stress or intimidation often associated with traditional gyms.
+              GLOWFIT was created for young adults and working professionals who want to develop dependable exercise habits without the stress or intimidation often associated with traditional gyms.
             </p>
             <p class="about-paragraph">
               Whether you are picking up a dumbbell for the very first time or returning after months away, our coaches focus on clear instruction, sustainable pacing, and encouragement. We believe progress comes from showing up consistently rather than burning out on day one.
@@ -331,9 +350,13 @@
     <div class="container footer-container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="#home" class="brand-logo">
-            <span class="logo-mark">⚡</span>
-            <span class="logo-text">PulseFit<span class="logo-accent">Studio</span></span>
+          <a href="#home" class="brand-logo" aria-label="GLOWFIT Home">
+            <span class="logo-mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12h3.5l2.5-6 4 12 2.5-6h3.5"/>
+              </svg>
+            </span>
+            <span class="logo-text">GLOW<span class="logo-accent">FIT</span></span>
           </a>
           <p class="footer-tagline">
             Practical, beginner-friendly fitness training designed for young adults.
@@ -354,11 +377,14 @@
 
       <div class="footer-bottom">
         <p class="academic-disclaimer">
-          <strong>Academic Notice:</strong> PulseFit Studio is a fictional fitness studio created solely for a university course assignment. No real commercial gym services, memberships, or classes are offered.
+          <strong>Academic Notice:</strong> GLOWFIT is a fictional fitness studio created solely for a university course assignment. No real commercial gym services, memberships, or classes are offered.
         </p>
-        <p class="copyright-notice">
-          &copy; <span id="currentYear">2026</span> PulseFit Studio (Fictional Student Project).
-        </p>
+        <div class="footer-meta">
+          <p class="copyright-notice">
+            &copy; <span id="currentYear">2026</span> GLOWFIT (Fictional Student Project).
+          </p>
+          <p class="photo-credits">Background photos from Unsplash</p>
+        </div>
       </div>
     </div>
   </footer>

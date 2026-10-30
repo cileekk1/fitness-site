@@ -1,20 +1,21 @@
-# PulseFit Studio
+# GLOWFIT
 
-A responsive, accessible frontend website for **PulseFit Studio**—a fictional fitness studio designed for beginners and intermediate trainees aged 18–35.
+A responsive, accessible frontend website for **GLOWFIT**—an elegant, fictional fitness studio designed for beginners and intermediate trainees aged 18–35.
 
-> **Academic Notice**: PulseFit Studio is a fictional brand created exclusively for a university course assignment. No real commercial gym services, memberships, or classes are offered.
+> **Academic Notice**: GLOWFIT is a fictional brand created exclusively for a university course assignment. No real commercial gym services, memberships, or classes are offered.
 
 ---
 
 ## 🏋️ Features & Sections
 
 - **Single-Page Navigation**: Sticky header with responsive mobile hamburger drawer.
-- **Hero**: Clear value proposition tailored to 18–35 beginners/intermediates with primary CTA *"Book a Free Trial Class"*.
-- **Programs**: Strength (Foundations & lifting), Cardio (Interval conditioning), and Yoga/Mobility (Recovery & flexibility).
+- **Hero**: Clear value proposition tailored to 18–35 beginners/intermediates with primary CTA *"Book a Free Trial Class"* and decorative blurred background (`/public/gym-1.jpg`).
+- **Programs**: Strength (Foundations & lifting), Cardio (Interval conditioning), and Yoga/Mobility (Recovery & flexibility) presented on subtle translucent dark glass cards with decorative background (`/public/gym-2.jpg`).
 - **Weekly Schedule**: Accessible timetable table covering morning, midday, and evening slots.
-- **About the Studio**: Honest, unpretentious philosophy focusing on habit formation and safe progression without fabricated claims.
+- **About the Studio**: Honest, unpretentious philosophy focusing on habit formation and safe progression without fabricated claims, set against a blurred background (`/public/gym-3.jpg`).
 - **Contact**: Frontend-only booking form with client-side validation and simulated instant confirmation.
-- **Design System**: Dark charcoal palette (`#0f1013`, `#16181d`), clean white typography (`#ffffff`), and high-voltage electric lime (`#ccff00`).
+- **Design System**: Elegant, premium and minimal palette of near-black (`#090a0d`), deep graphite tones, translucent dark glass surfaces, crisp white typography (`#ffffff`), and one electric phosphor pink accent (`#ff2d95`) for buttons, active states, small labels, and subtle glows.
+- **Photo Credits**: Background photos from Unsplash.
 
 ---
 
@@ -57,7 +58,7 @@ A responsive, accessible frontend website for **PulseFit Studio**—a fictional 
    git init
    git branch -M main
    git add .
-   git commit -m "feat: complete initial PulseFit Studio single-page website"
+   git commit -m "feat: complete initial GLOWFIT single-page website"
    ```
 
 2. **Push to GitHub**:
