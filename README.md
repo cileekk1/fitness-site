@@ -8,7 +8,7 @@ https://fitness-site-roan-six.vercel.app
 
 ## Amaç
 
-Yeni başlayanların ve orta seviyedeki sporcuların hedeflerine ve zorluk derecelerine göre antrenman programı bulabildiği, programları inceleyip deneme dersi için iletişime geçebildiği modern bir tanıtım ve üyelik sitesi tasarlamak.
+Yeni başlayanların ve orta seviyedeki sporcuların hedeflerine ve zorluk derecelerine göre antrenman programı bulabildiği, programları ve eğitim videolarını inceleyip deneme dersi için iletişime geçebildiği modern bir tanıtım ve üyelik sitesi tasarlamak.
 
 ## Hedef Kullanıcı
 
@@ -18,14 +18,15 @@ Yeni başlayanların ve orta seviyedeki sporcuların hedeflerine ve zorluk derec
 
 - Hero alanı ve "Hemen Üye Ol" çağrı butonu
 - Hedefe (kilo verme, kas geliştirme, esneklik, kondisyon) ve zorluk derecesine göre filtrelenebilir 12 program kartı
-- Program detay penceresi: haftalık plan, hareketler, set ve tekrar sayıları
+- Program detay penceresi: haftalık plan, hareketler, set ve tekrar sayıları, programa uygun videolar
+- Video Arşivi: Yoga, Kardiyo ve Serbest Ağırlık kategorilerinde, yeni başlayanlara uygun YouTube videoları (sinema modunda oynatıcı, "YouTube'da izle" bağlantısı)
 - Doğrulamalı iletişim formu (yalnızca ön yüz, veri gönderilmez ve saklanmaz)
 - Üye Girişi penceresi (demo, gerçek hesap sistemi yoktur)
 - Mobil uyumlu tasarım, sabit menü, erişilebilirlik ve temel SEO
 
 ## Kullanılan AI Coding Agent
 
-Google Antigravity (Gemini modeli). Depodaki `.agents/skills/vercel-web-deployment/SKILL.md` dosyası agent'a deployment kurallarını verir.
+Google Antigravity (Gemini ve Claude Sonnet 4.6 modelleriyle). Depodaki `.agents/skills/vercel-web-deployment/SKILL.md` dosyası agent'a deployment kurallarını verir.
 
 ## Teknoloji
 
@@ -51,4 +52,4 @@ Kod Git ile sürümlenir, GitHub'a push edilir. Vercel, `main` dalını izler ve
 
 ## Not
 
-GLOWFIT, üniversite dersi ödevi için hazırlanmış kurgusal bir markadır. Program içerikleri genel bilgi amaçlıdır, tıbbi tavsiye değildir. Fotoğraflar Unsplash ve Pexels kaynaklıdır.
+GLOWFIT, üniversite dersi ödevi için hazırlanmış kurgusal bir markadır. Program içerikleri genel bilgi amaçlıdır, tıbbi tavsiye değildir. Fotoğraflar Unsplash ve Pexels kaynaklıdır. Videolar YouTube üzerinden gömülmüştür ve ilgili kanallara aittir.
