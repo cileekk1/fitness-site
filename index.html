@@ -38,6 +38,7 @@
       <nav class="nav-menu" id="primaryNav" aria-label="Ana Navigasyon">
         <ul class="nav-list">
           <li><a href="#programlar" class="nav-link">Programlar</a></li>
+          <li><a href="#video-arsivi" class="nav-link">Video Arşivi</a></li>
           <li><a href="#iletisim" class="nav-link">İletişim</a></li>
         </ul>
         <div class="nav-action">
@@ -455,6 +456,37 @@
       </div>
     </section>
 
+    <!-- Video Library Section -->
+    <section class="section video-section" id="video-arsivi">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">ANTRENMAN İÇERİKLERİ</span>
+          <h2 class="section-title">Video Arşivi</h2>
+          <p class="section-subtitle">
+            Kategorilere göre filtrelenmiş antrenman videolarını incele ve doğrudan sayfada izle.
+          </p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="video-tabs" role="tablist" aria-label="Video Kategorileri">
+          <button class="video-tab active" data-category="yoga" role="tab" aria-selected="true" id="tab-yoga" aria-controls="video-panel">Yoga</button>
+          <button class="video-tab" data-category="kardiyo" role="tab" aria-selected="false" id="tab-kardiyo" aria-controls="video-panel">Kardiyo</button>
+          <button class="video-tab" data-category="serbest-agirlik" role="tab" aria-selected="false" id="tab-serbest-agirlik" aria-controls="video-panel">Serbest Ağırlık</button>
+        </div>
+
+        <!-- Video Cards Grid -->
+        <div class="video-grid" id="videoGrid" role="tabpanel" id="video-panel" aria-live="polite">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- Disclaimer Note -->
+        <p class="video-disclaimer" role="note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          Videolar YouTube üzerinden gömülmüştür, ilgili kanallara aittir ve genel bilgi amaçlıdır; tıbbi tavsiye değildir.
+        </p>
+      </div>
+    </section>
+
     <!-- Contact & Trial Booking Section -->
     <section class="section contact-section" id="iletisim">
       <div class="container contact-container">
@@ -571,6 +603,7 @@
           <ul class="footer-links">
             <li><a href="#hero">Ana Sayfa</a></li>
             <li><a href="#programlar">Programlar</a></li>
+            <li><a href="#video-arsivi">Video Arşivi</a></li>
             <li><a href="#iletisim">İletişim & Deneme</a></li>
           </ul>
         </nav>
@@ -659,6 +692,23 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" id="memberModalCloseFooterBtn">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cinema Video Modal -->
+  <div class="cinema-backdrop" id="cinemaModalBackdrop" style="display: none;" aria-hidden="true">
+    <div class="cinema-dialog" id="cinemaModal" role="dialog" aria-modal="true" aria-labelledby="cinemaModalTitle">
+      <div class="cinema-header">
+        <h2 class="cinema-title" id="cinemaModalTitle"></h2>
+        <a class="cinema-yt-link" id="cinemaYtLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="Bu videoyu YouTube'da yeni sekmede izle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.762 1.766 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z"/></svg>
+          YouTube'da izle
+        </a>
+        <button type="button" class="cinema-close" id="cinemaCloseBtn" aria-label="Videoyu kapat">&#x2715;</button>
+      </div>
+      <div class="cinema-player" id="cinemaPlayer">
+        <!-- iframe injected on open, removed on close -->
       </div>
     </div>
   </div>

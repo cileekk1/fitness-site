@@ -512,12 +512,69 @@ const PROGRAMS_DATA = {
   }
 };
 
+// --- Video Library Dataset ---
+const VIDEO_DATA = [
+  {
+    id: 'v7AYKMP6rOE',
+    title: 'Yeni Başlayanlar İçin 20 Dakikalık Yoga',
+    channel: 'Yoga With Adriene',
+    category: 'yoga'
+  },
+  {
+    id: 'sTANio_2E0Q',
+    title: 'Stres ve Kaygı İçin 20 Dakikalık Tüm Vücut Esneme',
+    channel: 'MadFit',
+    category: 'yoga'
+  },
+  {
+    id: 'gC_L9qAHVJ8',
+    title: 'Yeni Başlayanlar İçin 30 Dakikalık Düşük Etkili Antrenman',
+    channel: 'Body Project',
+    category: 'kardiyo'
+  },
+  {
+    id: 'cbKkB3POqaY',
+    title: 'Yeni Başlayanlar İçin Kardiyo Antrenmanı',
+    channel: '',
+    category: 'kardiyo'
+  },
+  {
+    id: '0yYiErHenzs',
+    title: 'Yeni Başlayanlar İçin Tüm Vücut Dambıl Antrenmanı',
+    channel: 'growwithjo',
+    category: 'serbest-agirlik'
+  },
+  {
+    id: 'L3eImBAXT7I',
+    title: 'Yeni Başlayanlar İçin 15 Dakikalık Dambıl Antrenmanı',
+    channel: 'BodyFit By Amy',
+    category: 'serbest-agirlik'
+  }
+];
+
+// Program goal → video category mapping
+const GOAL_VIDEO_CATEGORY = {
+  'kas-gelistirme': 'serbest-agirlik',
+  'kondisyon': 'kardiyo',
+  'esneklik': 'yoga',
+  'kilo-verme': 'kardiyo'
+};
+
+// Category display labels
+const CATEGORY_LABELS = {
+  'yoga': 'Yoga',
+  'kardiyo': 'Kardiyo',
+  'serbest-agirlik': 'Serbest Ağırlık'
+};
+
 // --- Main Initialization on DOM Ready ---
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileNav();
   initHeroVideo();
   initProgramFilters();
+  initCinemaModal();
+  initVideoLibrary();
   initProgramModal();
   initMemberModal();
   initContactForm();
@@ -809,6 +866,34 @@ function initProgramModal() {
       };
     }
 
+    // --- Video suggestions block ---
+    const modalBody = modal.querySelector('.modal-body');
+    // Remove any old block first
+    const oldBlock = modal.querySelector('.modal-videos-block');
+    if (oldBlock) oldBlock.remove();
+
+    const videoCategory = GOAL_VIDEO_CATEGORY[data.goal];
+    if (videoCategory && modalBody) {
+      const relatedVideos = VIDEO_DATA.filter(v => v.category === videoCategory).slice(0, 2);
+      if (relatedVideos.length > 0) {
+        const block = document.createElement('div');
+        block.className = 'modal-videos-block';
+
+        const blockTitle = document.createElement('p');
+        blockTitle.className = 'modal-videos-title';
+        blockTitle.textContent = 'Bu programa uygun videolar';
+        block.appendChild(blockTitle);
+
+        const miniGrid = document.createElement('div');
+        miniGrid.className = 'modal-video-mini-grid';
+        relatedVideos.forEach(video => {
+          miniGrid.appendChild(buildMiniVideoCard(video));
+        });
+        block.appendChild(miniGrid);
+        modalBody.appendChild(block);
+      }
+    }
+
     backdrop.style.display = 'flex';
     backdrop.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -1059,6 +1144,268 @@ function initCurrentYear() {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+}
+
+/**
+ * CINEMA MODAL — shared by video library cards and program modal suggestions
+ * Creates iframe on open, destroys it on close so video stops.
+ */
+function initCinemaModal() {
+  const backdrop = document.getElementById('cinemaModalBackdrop');
+  const dialog   = document.getElementById('cinemaModal');
+  const closeBtn = document.getElementById('cinemaCloseBtn');
+  const titleEl  = document.getElementById('cinemaModalTitle');
+  const ytLinkEl = document.getElementById('cinemaYtLink');
+  const playerEl = document.getElementById('cinemaPlayer');
+
+  if (!backdrop || !dialog) return;
+
+  let lastActive = null;
+
+  function openCinema(videoId, videoTitle) {
+    lastActive = document.activeElement;
+
+    if (titleEl) titleEl.textContent = videoTitle;
+    if (ytLinkEl) ytLinkEl.href = `https://www.youtube.com/watch?v=${videoId}`;
+
+    // Create iframe only on click
+    if (playerEl) {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`;
+      iframe.title = videoTitle;
+      iframe.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.allowFullscreen = true;
+      playerEl.innerHTML = '';
+      playerEl.appendChild(iframe);
+    }
+
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+  }
+
+  function closeCinema() {
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    // Remove iframe so video stops
+    if (playerEl) playerEl.innerHTML = '';
+    if (lastActive && typeof lastActive.focus === 'function') {
+      lastActive.focus();
+    }
+  }
+
+  // Expose openCinema globally so other functions can call it
+  window.openCinemaModal = openCinema;
+
+  if (closeBtn) closeBtn.addEventListener('click', closeCinema);
+
+  // Close on outside click
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeCinema();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.style.display === 'flex') {
+      closeCinema();
+    }
+  });
+}
+
+/**
+ * VIDEO LIBRARY — category tab switching + card rendering
+ */
+function initVideoLibrary() {
+  const grid   = document.getElementById('videoGrid');
+  const tabs   = document.querySelectorAll('.video-tab');
+
+  if (!grid || !tabs.length) return;
+
+  let activeCategory = 'yoga'; // default tab
+
+  function renderVideos(category) {
+    const filtered = VIDEO_DATA.filter(v => v.category === category);
+    grid.innerHTML = '';
+
+    filtered.forEach(video => {
+      const card = buildVideoCard(video);
+      grid.appendChild(card);
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      activeCategory = tab.getAttribute('data-category');
+      renderVideos(activeCategory);
+    });
+
+    tab.addEventListener('keydown', (e) => {
+      // Arrow key navigation between tabs
+      const tabArr = Array.from(tabs);
+      const idx = tabArr.indexOf(tab);
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const next = tabArr[(idx + 1) % tabArr.length];
+        next.click();
+        next.focus();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prev = tabArr[(idx - 1 + tabArr.length) % tabArr.length];
+        prev.click();
+        prev.focus();
+      }
+    });
+  });
+
+  // Initial render
+  renderVideos(activeCategory);
+}
+
+/**
+ * Build a video card element for the library grid
+ */
+function buildVideoCard(video) {
+  const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+  const ytUrl    = `https://www.youtube.com/watch?v=${video.id}`;
+  const catLabel = CATEGORY_LABELS[video.category] || video.category;
+
+  const card = document.createElement('article');
+  card.className = 'video-card';
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', `${escapeHtml(video.title)} videosunu oynat`);
+  card.setAttribute('data-video-id', video.id);
+  card.setAttribute('data-video-title', video.title);
+
+  card.innerHTML = `
+    <div class="video-thumb">
+      <img
+        src="${thumbUrl}"
+        alt="${escapeHtml(video.title)} video küçük resmi"
+        loading="lazy"
+        width="480"
+        height="270"
+      />
+      <div class="video-thumb-overlay" aria-hidden="true">
+        <div class="video-play-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="video-card-body">
+      <h3 class="video-card-title">${escapeHtml(video.title)}</h3>
+      ${video.channel ? `<p class="video-card-channel">${escapeHtml(video.channel)}</p>` : ''}
+      <div class="video-card-footer">
+        <span class="video-card-tag">${escapeHtml(catLabel)}</span>
+        <a
+          href="${ytUrl}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="video-card-yt-link"
+          aria-label="${escapeHtml(video.title)} videosunu YouTube'da izle"
+          onclick="event.stopPropagation()"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.762 1.766 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z"/></svg>
+          YouTube'da izle
+        </a>
+      </div>
+    </div>
+  `;
+
+  // Open cinema on card click / keyboard
+  function handleOpen(e) {
+    if (e.target.closest('.video-card-yt-link')) return; // let link through
+    if (window.openCinemaModal) {
+      window.openCinemaModal(video.id, video.title);
+    }
+  }
+
+  card.addEventListener('click', handleOpen);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOpen(e);
+    }
+  });
+
+  return card;
+}
+
+/**
+ * Build a mini video card for the program modal suggestions block
+ */
+function buildMiniVideoCard(video) {
+  const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+  const ytUrl    = `https://www.youtube.com/watch?v=${video.id}`;
+
+  const card = document.createElement('div');
+  card.className = 'modal-video-mini-card';
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', `${escapeHtml(video.title)} videosunu oynat`);
+
+  card.innerHTML = `
+    <div class="modal-video-mini-thumb">
+      <img
+        src="${thumbUrl}"
+        alt="${escapeHtml(video.title)} video küçük resmi"
+        loading="lazy"
+        width="320"
+        height="180"
+      />
+      <div class="modal-video-mini-overlay" aria-hidden="true">
+        <div class="modal-video-mini-play">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="modal-video-mini-body">
+      <p class="modal-video-mini-title">${escapeHtml(video.title)}</p>
+      <div class="modal-video-mini-footer">
+        <a
+          href="${ytUrl}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="modal-video-mini-yt-link"
+          aria-label="${escapeHtml(video.title)} videosunu YouTube'da izle"
+          onclick="event.stopPropagation()"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.762 1.766 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z"/></svg>
+          YouTube'da izle
+        </a>
+      </div>
+    </div>
+  `;
+
+  function handleOpen(e) {
+    if (e.target.closest('.modal-video-mini-yt-link')) return;
+    if (window.openCinemaModal) {
+      window.openCinemaModal(video.id, video.title);
+    }
+  }
+
+  card.addEventListener('click', handleOpen);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOpen(e);
+    }
+  });
+
+  return card;
 }
 
 /**
